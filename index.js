@@ -9,6 +9,9 @@ var api = new ParseServer({
   appId: 'myAppId',
   masterKey: 'myMasterKey', // Keep this key secret!
   fileKey: 'optionalFileKey',
+  liveQuery: {
+    classNames: ['ToDoList']
+  },
   serverURL: 'http://localhost:1337/parse' // Don't forget to change to https if needed
 });
 
@@ -29,6 +32,10 @@ app.use('/parse', api);
 // make the Parse Dashboard available at /dashboard
 app.use('/dashboard', dashboard);
 
-app.listen(1337, function () {
-  console.log('parse-server-example running on port 1337.');
-});
+// app.listen(1337, function () {
+//   console.log('parse-server-example running on port 1337.');
+// });
+
+var httpServer = require('http').createServer(app);
+httpServer.listen(1337);
+var parseLiveQueryServer = ParseServer.createLiveQueryServer(httpServer);
