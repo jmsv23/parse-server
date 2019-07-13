@@ -10,7 +10,7 @@ var api = new ParseServer({
   masterKey: 'myMasterKey', // Keep this key secret!
   fileKey: 'optionalFileKey',
   liveQuery: {
-    classNames: ['ToDoList']
+    classNames: ['ToDoList', 'Chat']
   },
   serverURL: 'http://localhost:1337/parse' // Don't forget to change to https if needed
 });
